@@ -11,49 +11,63 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <form id="chat">
-    <input type="text" name="username">
-    <div class="messages"></div>
-    <input type="text" name="message">
-    <button type="submit">Enviar</button>
-  </form>
+    <div class="form-wrapper">
+      <form class="chat" id="chat">
+        <input type="text" class="username" id="username" autocomplete="off" name="username" placeholder="nome do usuario">
+        <div class="chat">
 
-  <script type="text/javascript">
-    var socket = io('http://localhost:3000');
+          <div class="messages">
+          </div>
 
-    function renderMessage(message) {
-      $('.messages').append('<div class="message"><strong>'+ message.author +'</strong>: '+ message.message +'</div>')
-    }
+          <div class="footer">
 
-    socket.on('previousMessages', function(messages) {
-      for (message of messages) {
-        renderMessage(message)
-      }
-    })
+            <input type="text" name="message" class="textInput" autocomplete="off" placeholder="digite sua mensagem">
 
-    socket.on('receivedMessage', function(message) {
-      renderMessage(message)
-    })
+            <button type="submit" id="submit">&#9658</button>
 
-    $('#chat').submit(function(event){
-      event.preventDefault()
+          </div>
 
-      var author = $('input[name=username]').val()
-      var message = $('input[name=message]').val()
+        </div>
+      </form>
+    </div>
 
-      if (author.length && message.length!="") {
-        var messageObject = {
-          author: author,
-          message: message,
-        }
 
-        renderMessage(messageObject)
-
-        socket.emit('sendMessage', messageObject)
-      } else {
-        window.alert("[ERRO]digite algo")
-      }
-    })
-  </script>
+   <script type="text/javascript">
+     var socket = io('http://localhost:3000');
+ 
+     function renderMessage(message) {
+       $('.messages').append('<div class="message"><strong>'+ message.author +'</strong>: '+ message.message  +'</div>')
+     }
+ 
+     socket.on('previousMessages', function(messages) {
+       for (message of messages) {
+         renderMessage(message)
+       }
+     })
+ 
+     socket.on('receivedMessage', function(message) {
+       renderMessage(message)
+     })
+ 
+     $('#chat').submit(function(event){
+       event.preventDefault()
+ 
+       var author = $('input[name=username]').val()
+       var message = $('input[name=message]').val()
+ 
+       if (author.length && message.length!="") {
+         var messageObject = {
+           author: author,
+           message: message,
+         }
+ 
+         renderMessage(messageObject)
+ 
+         socket.emit('sendMessage', messageObject)
+       } else {
+         window.alert("[ERRO]digite algo")
+       }
+     })
+   </script>
 </body>
 </html>
