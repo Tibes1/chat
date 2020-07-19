@@ -6,6 +6,7 @@
 html,
   body {
   height: 100vh;
+  overflow: hidden;
 }
 
 body {
@@ -42,8 +43,8 @@ h1 {
 
 form {
   margin: 20px 0;
-  background-color: white;
   padding: 30px 25px;
+  padding-bottom: 0%;
   border-radius: 5px 5px 0px 0px;
   background-color: rgba(0,0,0,.6);
 }
@@ -56,17 +57,11 @@ div.chat {
   width: 50vw;
   height: 60vh;
 }
-.msg {
-  max-width: 95%;
-  font-size: 14px;
-  padding-top: 3px;
-}
 
-.name{
-  display: inline-block;
-  font-size: 18px;
-  font-weight: bold;
-  border: none;
+.messages{
+  overflow: scroll;
+  max-height: 100%;
+
 }
 
 .time {
