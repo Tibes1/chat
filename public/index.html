@@ -69,6 +69,11 @@
          window.alert("[ERRO]digite algo")
        }
      })
-   </script>
+  </script>
+  <script>
+    $(document).ready(function() {
+      $('.message').attr({scrollTop: $('.message').attr('scrollHeight')});
+    });
+  </script>
 </body>
 </html>

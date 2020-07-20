@@ -61,6 +61,7 @@ div.chat {
 .messages{
   overflow: scroll;
   max-height: 100%;
+  overflow-x: hidden;
 
 }
 
@@ -127,4 +128,15 @@ color: rgba(255,255,255,.7);
   cursor: pointer;
 }
 
-/*----------aside----------*/
+/*----------barra de rolagem do chat----------*/
+
+::-webkit-scrollbar-track {
+  background-color: rgb(50,50,50)
+}
+::-webkit-scrollbar {
+  width: 6px;
+  background-color: rgba(0,0,0,.8);
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,.8);
+}
