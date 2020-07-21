@@ -14,21 +14,24 @@
 <body>
     <div class="form-wrapper">
       <form class="chat" id="chat">
-        <input type="text" class="username" id="username" autocomplete="off" name="username" placeholder="nome do usuario">
+        <div class="input">
+          <input type="text" class="username" id="username" autocomplete="off" name="username" placeholder="nome do usuario">
+        </div>
+        
         <div class="chat">
 
           <div class="messages">
           </div>
 
-          <div class="footer">
+        </div>
 
-            <input type="text" name="message" class="textInput" autocomplete="off" placeholder="digite sua mensagem">
+            <div class="footer">
+
+              <input type="text" name="message" class="textInput" autocomplete="off" placeholder="digite sua mensagem">
 
             <button type="submit" id="submit">&#9658</button>
 
           </div>
-
-        </div>
       </form>
     </div>
 
@@ -37,7 +40,7 @@
      var socket = io('http://localhost:3000');
  
      function renderMessage(message) {
-       $('.messages').append('<div class="message"><strong>'+ message.author +'</strong>: '+ message.message  +'</div>')
+       $('.messages').append('<div class="message"><strong class="nickname">'+ message.author +'</strong> '+  message.time +' <p class="msg">'+ message.message  +'</p></div>')
      }
  
      socket.on('previousMessages', function(messages) {
@@ -49,17 +52,30 @@
      socket.on('receivedMessage', function(message) {
        renderMessage(message)
      })
+
+        function hour() {
+          let data = new Date()
+          let hora = data.getHours()
+          return hora
+        }
+        function minutes() {
+          let data = new Date()
+          let min = data.getMinutes()
+          return min
+        }
  
      $('#chat').submit(function(event){
        event.preventDefault()
  
        var author = $('input[name=username]').val()
        var message = $('input[name=message]').val()
+       var time =  `${("0" + hour().toString()).slice(-2)}:${("0" +minutes().toString()).slice(-2)}`
  
        if (author.length && message.length!="") {
          var messageObject = {
            author: author,
            message: message,
+           time: time,
          }
  
          renderMessage(messageObject)

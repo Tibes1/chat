@@ -57,17 +57,25 @@ div.chat {
   width: 50vw;
   height: 60vh;
 }
-
+/*div dentro do char aonde as criancas sao criadas*/
 .messages{
   overflow: scroll;
   max-height: 100%;
   overflow-x: hidden;
-
+}
+/*class dos pacotes de dados*/
+.message {
+  padding-top: 3px;
+}
+/*class do texto dentro da mensagem*/
+.msg {
+  font-size: 14px;
+  padding-right: 10px;
 }
 
 .time {
   display: inline-block;
-  font-size: 14px;    
+  font-size: 16px;    
   padding-left: 5px;
 }
 
@@ -93,7 +101,7 @@ div.chat {
   width: 90%;
   background-color: transparent;
   margin-left: 1%;
-  margin-top: 3px;
+  margin-top: 5px;
   color: white;
   padding-right: 5px;
 }
