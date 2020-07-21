@@ -17,7 +17,7 @@
         <div class="input">
           <input type="text" class="username" id="username" autocomplete="off" name="username" placeholder="nome do usuario">
         </div>
-        
+
         <div class="chat">
 
           <div class="messages">
@@ -81,8 +81,9 @@
          renderMessage(messageObject)
  
          socket.emit('sendMessage', messageObject)
+         $('input[name=message]').val("")
        } else {
-         window.alert("[ERRO]digite algo")
+         window.alert("[ERRO]ha campos vazios")
        }
      })
   </script>
